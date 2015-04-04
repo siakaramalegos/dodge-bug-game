@@ -7,7 +7,8 @@ var Enemy = function() {
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
     this.x = 0;
-    // this.y = 60;
+
+    // Pick a random row and random speed for each new enemy
     this.y = (Math.floor(Math.random() * (3 - 0)))*85 + 60;
     this.speed = (Math.floor(Math.random() * (3 - 1)) + 1)*100
 }
@@ -25,7 +26,6 @@ Enemy.prototype.update = function(dt) {
     } else {
         this.x = 0;
     };
-
 }
 
 // Draw the enemy on the screen, required method for game
@@ -42,16 +42,36 @@ var Player = function() {
     this.y = 400;
 }
 
-Player.prototype.update = function(dt) {
+// Update the player's position, required method for game
+Player.prototype.update = function() {
 
 }
 
+// Draw the player on the screen, required method for game
 Player.prototype.render = function(){
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 }
 
-Player.prototype.handleInput = function() {
-
+Player.prototype.handleInput = function(input) {
+    if (input == 'up') {
+        if (this.y == 60) {
+            this.y = 400;
+        } else {
+            this.y -= 85;
+        }
+    } else if (input == 'down') {
+        if (this.y != 400){
+            this.y += 85;
+        }
+    } else if (input == 'right') {
+        if (this.x != 404) {
+            this.x += 101;
+        }
+    } else if (input == 'left') {
+        if (this.x != 0){
+            this.x -= 101;
+        }
+    }
 }
 
 
