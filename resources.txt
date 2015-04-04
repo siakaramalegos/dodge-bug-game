@@ -1,0 +1,5 @@
+The following resources were used to build this game:
+
+Udacity Frontend Nanodegree Arcade Game engine
+https://github.com/udacity/frontend-nanodegree-arcade-game
+
