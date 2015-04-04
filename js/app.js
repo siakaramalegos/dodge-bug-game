@@ -9,6 +9,7 @@ var Enemy = function() {
     this.x = 0;
     // this.y = 60;
     this.y = (Math.floor(Math.random() * (3 - 0)))*85 + 60;
+    this.speed = (Math.floor(Math.random() * (3 - 1)) + 1)*100
 }
 
 // Update the enemy's position, required method for game
@@ -17,8 +18,10 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-    if (this.x < 505) {
-        this.x += 100 * dt;
+
+    // If the enemy is past the edge of the canvas, let him go a bit further before looping back to the beginning.
+    if (this.x < 707) {
+        this.x += this.speed * dt;
     } else {
         this.x = 0;
     };
@@ -54,7 +57,7 @@ Player.prototype.handleInput = function() {
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
-allEnemies = [new Enemy()];
+allEnemies = [new Enemy(), new Enemy()];
 // Place the player object in a variable called player
 player = new Player();
 
