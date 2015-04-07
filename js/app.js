@@ -85,7 +85,7 @@ Player.prototype.update = function() {
 
         // Check total score to increase level every 10 points
         if (this.score % 10 == 0) {
-            this.level += 1;
+            this.levelUp();
         };
         this.reset();
     };
@@ -122,6 +122,15 @@ Player.prototype.reset = function() {
     // Starting position for the player (middle bottom).
     this.x = 202;
     this.y = 400;
+}
+
+Player.prototype.levelUp = function() {
+    this.level += 1;
+
+    // Add a new enemy on the even-numbered levels.
+    if (this.level % 2 == 0) {
+        allEnemies[allEnemies.length] = new Enemy();
+    }
 }
 
 Player.prototype.handleInput = function(input) {

@@ -19,3 +19,6 @@ http://www.favicon-generator.org/
 
 Pixlr Editor for image editing (resizing hearts and making bug square for favicon)
 http://apps.pixlr.com/editor/
+
+Arrays in JavaScript by w3
+http://www.w3schools.com/js/js_arrays.asp
