@@ -38,27 +38,34 @@ Enemy.prototype.render = function() {
 // a handleInput() method.
 var Player = function() {
     this.sprite = 'images/char-cat-girl.png';
-    this.x = 202;
-    this.y = 400;
+    // Player.reset puts the player in the starting position.
+    this.reset();
 }
 
 // Update the player's position, required method for game
 Player.prototype.update = function() {
-
+    // If the player has reached the water, reset player to starting position.
+    if (this.y < 60) {
+        this.reset();
+    }
 }
 
 // Draw the player on the screen, required method for game
-Player.prototype.render = function(){
+Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 }
 
+Player.prototype.reset = function() {
+    // Starting position for the player (middle bottom).
+    this.x = 202;
+    this.y = 400;
+}
+
 Player.prototype.handleInput = function(input) {
+    // Handle player movement with limits so that if he/she reaches edge of screen, he/she does not move
+    // in an invalid direction.  Only exception is up because when player reaches the water, game is reset.
     if (input == 'up') {
-        if (this.y == 60) {
-            this.y = 400;
-        } else {
-            this.y -= 85;
-        }
+        this.y -= 85;
     } else if (input == 'down') {
         if (this.y != 400){
             this.y += 85;
