@@ -180,7 +180,7 @@ Gem.prototype.render = function() {
 }
 
 Gem.prototype.isCollision = function() {
-    // Check for player colliding with gem. Reset the gem when player collides with it.
+    // Check for player colliding with gem. Remove the gem when player collides with it.
     if (player.y == this.y && player.x == this.x) {
         player.score += 2;
         allGems.splice(allGems.indexOf(this), 1);
