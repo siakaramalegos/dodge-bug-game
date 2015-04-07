@@ -3,3 +3,8 @@ The following resources were used to build this game:
 Udacity Frontend Nanodegree Arcade Game engine
 https://github.com/udacity/frontend-nanodegree-arcade-game
 
+JavaScript logical operators (I forgot how to write "or")
+http://www.w3schools.com/js/js_comparisons.asp
+
+Udacity Frontend Nanodegree forums for project 3
+
