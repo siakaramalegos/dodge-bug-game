@@ -21,7 +21,8 @@ var Engine = (function(global) {
      */
     var doc = global.document,
         win = global.window,
-        canvas = doc.createElement('canvas'),
+        // canvas = doc.createElement('canvas'),
+        canvas = document.querySelector('canvas'),
         ctx = canvas.getContext('2d'),
         lastTime;
 
