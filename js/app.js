@@ -78,6 +78,7 @@ var Player = function() {
 
 // Update the player's position, required method for game
 Player.prototype.update = function() {
+
     // If the player has reached the water, increase it's score by 2 points and reset player to starting position.
     if (this.y < 60) {
         this.score += 2;
@@ -131,6 +132,16 @@ Player.prototype.levelUp = function() {
     if (this.level % 2 == 0) {
         allEnemies[allEnemies.length] = new Enemy();
     }
+
+    // Add a new gem on the odd-numbered levels, up to 3 gems.
+    allGems = [new Gem()];
+    if (this.level >= 3) {
+        allGems[allGems.length] = new Gem();
+        if (this.level >= 5) {
+            allGems[allGems.length] = new Gem();
+        }
+    }
+
 }
 
 Player.prototype.handleInput = function(input) {
@@ -159,11 +170,6 @@ Player.prototype.handleInput = function(input) {
 var Gem = function() {
     this.sprite = 'images/gem-orange-small.png';
 
-    // Player.reset puts the player in the starting position.
-    this.reset();
-}
-
-Gem.prototype.reset = function() {
     // Pick a random row and column for the gem.
     this.y = (Math.floor(Math.random() * (3 - 0))) * 85 + 60;
     this.x = (Math.floor(Math.random() * (5-0))) * 101;
@@ -173,12 +179,25 @@ Gem.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 }
 
+Gem.prototype.isCollision = function() {
+    // Check for player colliding with gem. Reset the gem when player collides with it.
+    if (player.y == this.y && player.x == this.x) {
+        player.score += 2;
+        allGems.splice(allGems.indexOf(this), 1);
+    };
+}
+
+Gem.prototype.update = function() {
+    // Check for collisions.
+    this.isCollision();
+}
+
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 allEnemies = [new Enemy(), new Enemy()];
 // Place the player object in a variable called player
 player = new Player();
-
+// Place the initial gem in an array called allGems
 allGems = [new Gem()];
 
 
