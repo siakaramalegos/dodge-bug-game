@@ -48,7 +48,6 @@ Enemy.prototype.isCollision = function() {
             (this.x -101 < player.x - 20) && (this.x - 101 > player.x - 80))) {
         // Reduce player life by 1 and reset it back to starting position.
         player.lives -= 1;
-        console.log("lives are " + player.lives);
         player.reset();
 
         // Reset the colliding bug as well for more variety.
@@ -78,13 +77,7 @@ Player.prototype.update = function() {
     // If the player has reached the water, increase it's score by 5 points and reset player to starting position.
     if (this.y < 60) {
         this.score += 1;
-        console.log("score is " + this.score);
         this.reset();
-    };
-
-    // Check how many lives left and end game if none are left.
-    if (this.lives == 0) {
-        console.log("game over");
     };
 }
 
@@ -121,21 +114,24 @@ Player.prototype.reset = function() {
 Player.prototype.handleInput = function(input) {
     // Handle player movement with limits so that if he/she reaches edge of screen, he/she does not move
     // in an invalid direction.  Only exception is up because when player reaches the water, game is reset.
-    if (input == 'up') {
-        this.y -= 85;
-    } else if (input == 'down') {
-        if (this.y != 400){
-            this.y += 85;
-        }
-    } else if (input == 'right') {
-        if (this.x != 404) {
-            this.x += 101;
-        }
-    } else if (input == 'left') {
-        if (this.x != 0){
-            this.x -= 101;
-        }
-    }
+    // First check that game is not over (block movement if it is).
+    if (this.lives > 0) {
+        if (input == 'up') {
+            this.y -= 85;
+        } else if (input == 'down') {
+            if (this.y != 400){
+                this.y += 85;
+            }
+        } else if (input == 'right') {
+            if (this.x != 404) {
+                this.x += 101;
+            }
+        } else if (input == 'left') {
+            if (this.x != 0){
+                this.x -= 101;
+            }
+        };
+    };
 }
 
 
