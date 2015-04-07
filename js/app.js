@@ -92,18 +92,23 @@ Player.prototype.update = function() {
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 
-    // Draw how many lives are left with hearts.
-    if (this.lives == 0) {
-        console.log("game over still");
+    // Draw score and how many lives are left with hearts.
+    if (this.lives <= 0) {
+        ctx.fillText('game over', 480, 92);
     } else if (this.lives >= 1) {
-        ctx.drawImage(Resources.get(this.lifeSprite), 444, 40);
+        // Draw score in numbers.
+        ctx.fillText(this.score, 480, 92);
+
+        // Draw lives
+        ctx.drawImage(Resources.get(this.lifeSprite), 24, 40);
         if (this.lives >= 2) {
-            ctx.drawImage(Resources.get(this.lifeSprite), 394, 40);
+            ctx.drawImage(Resources.get(this.lifeSprite), 74, 40);
             if (this.lives == 3) {
-                ctx.drawImage(Resources.get(this.lifeSprite), 344, 40);
+                ctx.drawImage(Resources.get(this.lifeSprite), 124, 40);
             }
         }
     };
+
 
 }
 

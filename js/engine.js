@@ -29,6 +29,11 @@ var Engine = (function(global) {
     canvas.height = 606;
     doc.body.appendChild(canvas);
 
+    // Text attributes
+    ctx.font = "30pt Impact";
+    ctx.textAlign = "right";
+    ctx.fillStyle = "white";
+
     /* This function serves as the kickoff point for the game loop itself
      * and handles properly calling the update and render methods.
      */
