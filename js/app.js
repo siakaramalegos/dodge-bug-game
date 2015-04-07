@@ -32,9 +32,12 @@ Enemy.prototype.update = function(dt) {
 }
 
 Enemy.prototype.isCollision = function() {
-    // console.log('check isCollision');
-    if (this.x < player.x + 5 && this.x > player.x - 5 && this.y == player.y) {
-        console.log('collision at '+ this.x + ', ' + this.y);
+    // The speed of the bugs isn't continuous across the canvas, so we must check for the bug being within
+    // a range of the player's x position.  Minus 80-85 pixels roughly equates to the bug's nose hitting the
+    // player's avatar.  Reset the player when he/she is hit by the bug.
+    if (this.y == player.y &&
+        ((this.x < player.x - 20 && this.x > player.x - 80) || (this.x -101 < player.x - 20) && (this.x - 101 > player.x - 80))) {
+        player.reset();
     };
 }
 
