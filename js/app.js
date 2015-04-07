@@ -6,11 +6,19 @@ var Enemy = function() {
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
+
+    // Create random y positions and speeds.
+    this.reset();
+
+}
+
+Enemy.prototype.reset = function() {
+    // Starting position for the player (middle bottom).
     this.x = 0;
+    this.y = 400;
 
     // Pick a random row and random speed for each new enemy
     this.y = (Math.floor(Math.random() * (3 - 0)))*85 + 60;
-    console.log('enemy ' + this.y);
     this.speed = (Math.floor(Math.random() * (3 - 1)) + 1)*100;
 }
 
@@ -42,6 +50,9 @@ Enemy.prototype.isCollision = function() {
         player.lives -= 1;
         console.log("lives are " + player.lives);
         player.reset();
+
+        // Reset the colliding bug as well for more variety.
+        this.reset();
     };
 }
 
