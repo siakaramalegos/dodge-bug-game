@@ -20,8 +20,9 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
+
+    // Check for collisions.
     this.isCollision();
-    // console.log(this.x);
 
     // If the enemy is past the edge of the canvas, let him go a bit further before looping back to the beginning.
     if (this.x < 707) {
@@ -32,11 +33,14 @@ Enemy.prototype.update = function(dt) {
 }
 
 Enemy.prototype.isCollision = function() {
-    // The speed of the bugs isn't continuous across the canvas, so we must check for the bug being within
-    // a range of the player's x position.  Minus 80-85 pixels roughly equates to the bug's nose hitting the
-    // player's avatar.  Reset the player when he/she is hit by the bug.
+    // Check for any overlap of bug and player.  The begin and end of the player visually is about -80 to -20 pixels from its x.
+    // The bug ranges from 101 to 0 pixels from its x.  Reset the player when he/she collides with the bug.
     if (this.y == player.y &&
-        ((this.x < player.x - 20 && this.x > player.x - 80) || (this.x -101 < player.x - 20) && (this.x - 101 > player.x - 80))) {
+        ((this.x < player.x - 20 && this.x > player.x - 80) ||
+            (this.x -101 < player.x - 20) && (this.x - 101 > player.x - 80))) {
+        // Reduce player life by 1 and reset it back to starting position.
+        player.lives -= 1;
+        console.log("lives are " + player.lives);
         player.reset();
     };
 }
@@ -51,16 +55,25 @@ Enemy.prototype.render = function() {
 // a handleInput() method.
 var Player = function() {
     this.sprite = 'images/char-cat-girl.png';
+    this.lives = 3;
+    this.score = 0;
     // Player.reset puts the player in the starting position.
     this.reset();
 }
 
 // Update the player's position, required method for game
 Player.prototype.update = function() {
-    // If the player has reached the water, reset player to starting position.
+    // If the player has reached the water, increase it's score by 5 points and reset player to starting position.
     if (this.y < 60) {
+        this.score += 1;
+        console.log("score is " + this.score);
         this.reset();
-    }
+    };
+
+    // Check how many lives left and end game if none are left.
+    if (this.lives == 0) {
+        console.log("game over");
+    };
 }
 
 // Draw the player on the screen, required method for game
