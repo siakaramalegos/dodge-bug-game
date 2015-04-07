@@ -1,7 +1,7 @@
 body {
-    text-align: center;
-    padding-top: 40px;
-    font-family: "Lucida Console", Monaco, monospace;
+  padding-top: 30px;
+  font-family: "Lucida Console", Monaco, monospace;
+  text-align: center;
 }
 
 .navbar-brand {
@@ -11,4 +11,9 @@ body {
 .navbar-right {
   margin-right: 0;
   font-size: 1.5em;
+}
+
+.container {
+  text-align: left;
+  padding-top: 20px;
 }
