@@ -1,5 +1,6 @@
 Dodge Bug
 ===============================
+This game was Project 3 in the [Udacity Front-End Nanodegree](https://www.udacity.com/course/nd001) program. We had to create a Frogger-like game using provided visual assets and a game loop engine. The objectives were to better understand JavaScript's object-oriented programming features as well as working with canvas in HTML5.
 
 ##How to Play the Game
 ###Overview
