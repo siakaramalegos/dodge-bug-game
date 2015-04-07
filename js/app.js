@@ -85,13 +85,15 @@ Player.prototype.update = function() {
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 
+    // Draw score in numbers.
+    ctx.fillText(this.score, 480, 92);
+
     // Draw score and how many lives are left with hearts.
     if (this.lives <= 0) {
-        ctx.fillText('game over', 480, 92);
+        ctx.fillText('game over', 180, 92);
+        ctx.fillText('refresh your browser', 430, 300);
+        ctx.fillText('to play again', 350, 340);
     } else if (this.lives >= 1) {
-        // Draw score in numbers.
-        ctx.fillText(this.score, 480, 92);
-
         // Draw lives
         ctx.drawImage(Resources.get(this.lifeSprite), 24, 40);
         if (this.lives >= 2) {
