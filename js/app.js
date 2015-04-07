@@ -65,18 +65,28 @@ Enemy.prototype.render = function() {
 // a handleInput() method.
 var Player = function() {
     this.sprite = 'images/char-cat-girl.png';
+    // Lives left image for status at top left
     this.lifeSprite = 'images/Heart-small.png';
+
+    // Initial number of lives, score, and level
     this.lives = 3;
     this.score = 0;
+    this.level = 1;
+
     // Player.reset puts the player in the starting position.
     this.reset();
 }
 
 // Update the player's position, required method for game
 Player.prototype.update = function() {
-    // If the player has reached the water, increase it's score by 5 points and reset player to starting position.
+    // If the player has reached the water, increase it's score by 2 points and reset player to starting position.
     if (this.y < 60) {
-        this.score += 1;
+        this.score += 2;
+
+        // Check total score to increase level every 10 points
+        if (this.score % 10 == 0) {
+            this.level += 1;
+        };
         this.reset();
     };
 }
@@ -85,8 +95,9 @@ Player.prototype.update = function() {
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 
-    // Draw score in numbers.
-    ctx.fillText(this.score, 480, 92);
+    // Draw score and level.
+    ctx.fillText('score: ' + this.score, 480, 92);
+    ctx.fillText('level: ' + this.level, 130, 570);
 
     // Draw score and how many lives are left with hearts.
     if (this.lives <= 0) {
