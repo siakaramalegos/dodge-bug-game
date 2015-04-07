@@ -13,11 +13,10 @@ var Enemy = function() {
 }
 
 Enemy.prototype.reset = function() {
-    // Starting position for the player (middle bottom).
+    // Starting x position for the enemy (middle bottom).
     this.x = 0;
-    this.y = 400;
 
-    // Pick a random row and random speed for each new enemy
+    // Pick a random row (y) and random speed for each new enemy
     this.y = (Math.floor(Math.random() * (3 - 0)))*85 + 60;
     this.speed = (Math.floor(Math.random() * (3 - 1)) + 1)*100;
 }
@@ -124,6 +123,7 @@ Player.prototype.reset = function() {
     this.y = 400;
 }
 
+// Handle updates to game for each level (increase complexity).
 Player.prototype.levelUp = function() {
     this.level += 1;
 
@@ -156,12 +156,30 @@ Player.prototype.handleInput = function(input) {
     };
 }
 
+var Gem = function() {
+    this.sprite = 'images/gem-orange-small.png';
+
+    // Player.reset puts the player in the starting position.
+    this.reset();
+}
+
+Gem.prototype.reset = function() {
+    // Pick a random row and column for the gem.
+    this.y = (Math.floor(Math.random() * (3 - 0))) * 85 + 60;
+    this.x = (Math.floor(Math.random() * (5-0))) * 101;
+}
+
+Gem.prototype.render = function() {
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+}
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 allEnemies = [new Enemy(), new Enemy()];
 // Place the player object in a variable called player
 player = new Player();
+
+allGems = [new Gem()];
 
 
 
