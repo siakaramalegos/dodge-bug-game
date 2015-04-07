@@ -66,6 +66,7 @@ Enemy.prototype.render = function() {
 // a handleInput() method.
 var Player = function() {
     this.sprite = 'images/char-cat-girl.png';
+    this.lifeSprite = 'images/Heart-small.png';
     this.lives = 3;
     this.score = 0;
     // Player.reset puts the player in the starting position.
@@ -90,6 +91,20 @@ Player.prototype.update = function() {
 // Draw the player on the screen, required method for game
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+
+    // Draw how many lives are left with hearts.
+    if (this.lives == 0) {
+        console.log("game over still");
+    } else if (this.lives >= 1) {
+        ctx.drawImage(Resources.get(this.lifeSprite), 444, 40);
+        if (this.lives >= 2) {
+            ctx.drawImage(Resources.get(this.lifeSprite), 394, 40);
+            if (this.lives == 3) {
+                ctx.drawImage(Resources.get(this.lifeSprite), 344, 40);
+            }
+        }
+    };
+
 }
 
 Player.prototype.reset = function() {
