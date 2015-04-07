@@ -22,3 +22,9 @@ http://apps.pixlr.com/editor/
 
 Arrays in JavaScript by w3
 http://www.w3schools.com/js/js_arrays.asp
+
+How to Splice (completely remove) elements from an array, from StackOverflow
+http://stackoverflow.com/questions/500606/javascript-array-delete-elements
+
+Markdown basics to make my README file pretty
+https://help.github.com/articles/markdown-basics/
